@@ -7,9 +7,9 @@ POST http://localhost:5000/users/signup
 Content-Type: application/json 
 
 {
-    "email":"qq2w@qq.com",
-    "password":"abcdaaa",
-    "name":"darren"
+    "email":"darrenyipzy@gmail.com",
+    "password":"abcd1234",
+    "name":"testDarren"
 }
 ###
 POST http://localhost:5000/users/login
@@ -18,4 +18,13 @@ Content-Type: application/json
 {
     "email":"q22w@qq.com",
     "password":"abcdaaa"
+}
+
+###
+POST http://localhost:5000/users/login
+Content-Type: application/json 
+
+{
+    "email":"darrenyipzy@gmail.com",
+    "password":"abcd1234"
 }

@@ -60,8 +60,9 @@ exports.loginUser = async(req, res) => {
                     res.json({ success: false, error: "wrong password" });
                 } else {
                     const token = JsonWebToken.sign({ id: user._id, email: user.email },
-                        SECRET_JWT_CODE
+                        SECRET_JWT_CODE, { expiresIn: "5s" }
                     );
+                    res.cookie("token", token, { httpOnly: true });
                     res.status(200).json({ success: true, token: token });
                 }
             }
@@ -72,14 +73,13 @@ exports.loginUser = async(req, res) => {
 };
 
 // checkToken
-
 function fetchUserByToken(req) {
     return new Promise((resolve, reject) => {
         if (req.headers && req.headers.authorization) {
-            let authorization = req.headers.authorization;
+            let token = req.headers.authorization;
             let decoded;
             try {
-                decoded = JsonWebToken.verify(authorization, SECRET_JWT_CODE);
+                decoded = JsonWebToken.verify(token, SECRET_JWT_CODE);
             } catch (error) {
                 reject("Token not valid");
                 return;

@@ -1,7 +1,17 @@
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const express = require("express");
+const cors = require("cors");
 const app = express();
+
+// cors setup
+app.use(
+    cors({
+        origin: ["http://localhost:3000", "http://www.baomeijiadocs.cn"],
+        methods: ["GET", "POST", "PUT"],
+        alloweHeaders: ["Conten-Type", "Authorization"],
+    })
+);
 
 // mongodb setup
 const mongoose = require("mongoose");
