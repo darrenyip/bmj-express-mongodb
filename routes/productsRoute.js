@@ -2,15 +2,19 @@ const express = require("express");
 const productRoute = express.Router();
 
 const {
-    getAllUsers,
-    getUser,
-    updateUser,
-    deleteUser,
-    createUser,
-} = require("../controllers/userController");
+    getAllProducts,
+    getProduct,
+    updateProduct,
+    deleteProduct,
+    createProduct,
+} = require("../controllers/productController");
 
-productRoute.route("/").get(getAllUsers);
-productRoute.route("/signup").post(createUser);
-productRoute.route("/:id").get(getUser).delete(deleteUser).patch(updateUser);
+productRoute.route("/").get(getAllProducts);
+productRoute.route("/create").post(createProduct);
+productRoute
+    .route("/:id")
+    .get(getProduct)
+    .delete(deleteProduct)
+    .patch(updateProduct);
 
-module.exports = usersRouter;
+module.exports = productRoute;

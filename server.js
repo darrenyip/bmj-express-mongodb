@@ -7,7 +7,11 @@ const app = express();
 // cors setup
 app.use(
     cors({
-        origin: ["http://localhost:3000", "http://www.baomeijiadocs.cn"],
+        origin: [
+            "http://localhost:3000",
+            "http://www.baomeijiadocs.cn",
+            "https://bmj-front-end.vercel.app/",
+        ],
         methods: ["GET", "POST", "PUT"],
         alloweHeaders: ["Conten-Type", "Authorization"],
     })
@@ -34,8 +38,8 @@ app.use((req, res, next) => {
 const usersRouter = require("./routes/usersRoute");
 app.use("/users", usersRouter);
 // --------- Product Route ----------
-// const productsRoute = require("./routes/productsRoute");
-// app.use("/products", usersRouter);
+const productsRoute = require("./routes/productsRoute");
+app.use("/products", productsRoute);
 
 const port = process.env.PORT || 5001;
 app.listen(port, () => console.log(`Server stared on port ${port}`));
